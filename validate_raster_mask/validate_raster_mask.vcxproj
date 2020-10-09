@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{5CA372BB-1D90-48FC-9FC3-E7D49F5CB624}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>validaterastermask</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../gdal302/include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../gdal302/x64/lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;cairo.lib;cfitsio.lib;clientlib.lib;expat.lib;fontconfig.lib;freetype.lib;freexl.lib;freexl_i.lib;fribidi.lib;gd.lib;gdal_i.lib;geos.lib;geos_c.lib;giflib.lib;harfbuzz.lib;hdf5.lib;hdf5_cpp.lib;hdf5_hl.lib;hdf5_hl_cpp.lib;hdfdll.lib;iconv.lib;libcurl_imp.lib;libeay32.lib;libecwj2.lib;libfcgi.lib;libjbig.lib;cairo.lib;libkea.lib;libkmlbase.lib;libkmlconvenience.lib;libkmldom.lib;libkmlengine.lib;libkmlregionator.lib;libkmlxsd.lib;libmysql.lib;libpng.lib;libpq.lib;libpqdll.lib;libsvg-cairo.lib;libsvg.lib;libtiff_i.lib;libxml2.lib;mapserver.lib;mfhdfdll.lib;minizip.lib;zdll.lib;msplugin_mssql2008.lib;msplugin_oracle.lib;netcdf.lib;openjp2.lib;pixman-1.lib;libjpeg.lib;poppler.lib;proj.lib;proj_6_1.lib;proj_i.lib;protobuf-c.lib;spatialite.lib;spatialite_i.lib;sqlite3_i.lib;ssleay32.lib;szip.lib;tiff.lib;xdrdll.lib;xerces-c_3.lib;zlib.lib;</AdditionalDependencies>
+      <DelayLoadDLLs>fribidi.dll;freexl.dll;expat.dll;gdal300.dll;geos.dll;geos_c.dll;hdf5.dll;hdf5_cpp.dll;hdf5_hl.dll;hdf5_hl_cpp.dll;hdfdll.dll;iconv.dll;libcurl.dll;cfitsio.dll;libecwj2.dll;libfcgi.dll;libkea.dll;libmysql.dll;libpq.dll;libtiff.dll;libxml2.dll;lti_dsdk_9.5.dll;lti_lidar_dsdk_1.1.dll;mapserver.dll;mfhdfdll.dll;cairo.dll;msplugin_mssql2008.dll;msplugin_oracle.dll;netcdf.dll;openjp2.dll;xerces-c_3_2.dll;proj.dll;libeay32.dll;proj_6_1.dll;xdrdll.dll;vcruntime140.dll;spatialite.dll;sqlite3.dll;tiffxx.dll;ssleay32.dll;szip.dll;tbb.dll;tiff.dll;zlib1.dll;</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../gdal302/include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../gdal302/x64/lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;cairo.lib;cfitsio.lib;clientlib.lib;expat.lib;fontconfig.lib;freetype.lib;freexl.lib;freexl_i.lib;fribidi.lib;gd.lib;gdal_i.lib;geos.lib;geos_c.lib;giflib.lib;harfbuzz.lib;hdf5.lib;hdf5_cpp.lib;hdf5_hl.lib;hdf5_hl_cpp.lib;hdfdll.lib;iconv.lib;libcurl_imp.lib;libeay32.lib;libecwj2.lib;libfcgi.lib;libjbig.lib;cairo.lib;libkea.lib;libkmlbase.lib;libkmlconvenience.lib;libkmldom.lib;libkmlengine.lib;libkmlregionator.lib;libkmlxsd.lib;libmysql.lib;libpng.lib;libpq.lib;libpqdll.lib;libsvg-cairo.lib;libsvg.lib;libtiff_i.lib;libxml2.lib;mapserver.lib;mfhdfdll.lib;minizip.lib;zdll.lib;msplugin_mssql2008.lib;msplugin_oracle.lib;netcdf.lib;openjp2.lib;pixman-1.lib;libjpeg.lib;poppler.lib;proj.lib;proj_6_1.lib;proj_i.lib;protobuf-c.lib;spatialite.lib;spatialite_i.lib;sqlite3_i.lib;ssleay32.lib;szip.lib;tiff.lib;xdrdll.lib;xerces-c_3.lib;zlib.lib;</AdditionalDependencies>
+      <DelayLoadDLLs>fribidi.dll;freexl.dll;expat.dll;gdal300.dll;geos.dll;geos_c.dll;hdf5.dll;hdf5_cpp.dll;hdf5_hl.dll;hdf5_hl_cpp.dll;hdfdll.dll;iconv.dll;libcurl.dll;cfitsio.dll;libecwj2.dll;libfcgi.dll;libkea.dll;libmysql.dll;libpq.dll;libtiff.dll;libxml2.dll;lti_dsdk_9.5.dll;lti_lidar_dsdk_1.1.dll;mapserver.dll;mfhdfdll.dll;cairo.dll;msplugin_mssql2008.dll;msplugin_oracle.dll;netcdf.dll;openjp2.dll;xerces-c_3_2.dll;proj.dll;libeay32.dll;proj_6_1.dll;xdrdll.dll;vcruntime140.dll;spatialite.dll;sqlite3.dll;tiffxx.dll;ssleay32.dll;szip.dll;tbb.dll;tiff.dll;zlib1.dll;</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="validate_raster_mask.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="external.h" />
+    <ClInclude Include="raster_mask.h" />
+    <ClInclude Include="vector_operator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
