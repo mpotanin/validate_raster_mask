@@ -27,11 +27,11 @@ Objects
 
 
 const list<MPLOptionDescriptor> listDescriptors = {
-	{ "-m", 0, 0, "raster mask (uint8/16/32)" },
-	{ "-v", 0, 0, "validation vector" },
-	{"-c", 0, 0, "class column (integer)"},
-	{"-err", 0, 0, "error column (float)" },
-	{"-t", 0, 0, "folder for temporary files"}
+	{ "-m", 0, 0, 1, "raster mask (uint8/16/32)" },
+	{ "-v", 0, 0, 1, "validation vector" },
+	{"-c", 0, 0, 1, "class column (integer)"},
+	{"-err", 0, 0, 1, "error column (float)" },
+	{"-t", 0, 0, 1, "folder for temporary files"}
 };
 
 
