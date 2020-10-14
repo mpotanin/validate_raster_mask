@@ -54,7 +54,7 @@ public:
 
 		m_strTempRasterized = MPLFileSys::RemoveExtension(m_strTempCopyOfVectorFile) + ".tif";
 
-		m_strFIDColName = "FID_" + to_string(rand());
+		m_strFIDColName = "FID_" + to_string(rand()%10000);
 
 		m_strErrorColName = strErrorColName;
 
