@@ -51,6 +51,7 @@ public:
 
 		m_strTempCopyOfVectorFile = MPLFileSys::GetAbsolutePath(strWorkFolder,
 			MPLFileSys::RemoveExtension(MPLFileSys::RemovePath(strVectorFile)) + "_" + to_string(rand()) + ".shp");
+
 		m_strTempRasterized = MPLFileSys::RemoveExtension(m_strTempCopyOfVectorFile) + ".tif";
 
 		m_strFIDColName = "FID_" + to_string(rand());
@@ -172,8 +173,7 @@ public:
 		strCommand += "-te " + to_string(oEnvp.MinX) + " " + to_string(oEnvp.MinY) + " " +
 			to_string(oEnvp.MaxX) + " " + to_string(oEnvp.MaxY) + " ";
 		strCommand += "-ts " + to_string(nWidth) + " " + to_string(nHeight) + " ";
-		strCommand += m_strTempCopyOfVectorFile + " ";
-		strCommand += m_strTempRasterized;
+		strCommand += "\"" + m_strTempCopyOfVectorFile + "\" \"" + m_strTempRasterized + "\"";
 		return (0==std::system(strCommand.c_str()));
 	}
 
@@ -214,11 +214,14 @@ public:
 
 		
 		char* pachProj4;
-		m_poMaskDS->GetSpatialRef()->exportToProj4(&pachProj4);
+		OGRSpatialReference oSRS;
+		oSRS.SetFromUserInput(m_poMaskDS->GetProjectionRef());
+		oSRS.exportToProj4(&pachProj4);
+		//m_poMaskDS->GetSpatialRef()->exportToProj4(&pachProj4);
 		string strProj4(pachProj4);
 		strCommand += "-t_srs \"" + strProj4 + "\" ";
-		strCommand += m_strTempCopyOfVectorFile + " " + m_strVectorFile;
-
+		strCommand += "\"" + m_strTempCopyOfVectorFile + "\" \"" + m_strVectorFile + "\"";
+		//std::cout << strCommand << endl;
 		return (0==std::system(strCommand.c_str()));
 	};
 

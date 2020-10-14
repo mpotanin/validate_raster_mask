@@ -163,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external.h" />
-    <ClInclude Include="raster_mask.h" />
     <ClInclude Include="vector_operator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
