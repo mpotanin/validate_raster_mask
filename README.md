@@ -7,5 +7,5 @@
 * ```git clone https://github.com/mpotanin/validate_raster_mask``` 
 * ```git clone https://github.com/mpotanin/cpp_common_utils```  
 * cd validate_raster_mask/validate_raster_mask
-```make```
-run validate_raster_mask.exe
+* ```make```
+* run validate_raster_mask.exe
