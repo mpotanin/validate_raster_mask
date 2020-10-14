@@ -86,9 +86,12 @@ public:
 
 		while (poFeature = poLayer->GetNextFeature())
 		{
-			poFeature->SetField(m_strErrorColName.c_str(),
-				1. - ((double)m_mapStat[poFeature->GetFID()].second) / m_mapStat[poFeature->GetFID()].first);
-			poLayer->SetFeature(poFeature);
+			if (m_mapStat.find(poFeature->GetFID()) != m_mapStat.end())
+			{
+				poFeature->SetField(m_strErrorColName.c_str(),
+					1. - ((double)m_mapStat[poFeature->GetFID()].second) / m_mapStat[poFeature->GetFID()].first);
+				poLayer->SetFeature(poFeature);
+			}
 			OGRFeature::DestroyFeature(poFeature);
 		}
 
