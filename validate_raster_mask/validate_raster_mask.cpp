@@ -29,9 +29,10 @@ Objects
 const list<MPLOptionDescriptor> listDescriptors = {
 	{ "-m", 0, 0, 1, "raster mask (uint8/16/32)" },
 	{ "-v", 0, 0, 1, "validation vector" },
-	{"-c", 0, 0, 1, "class column (integer)"},
+	{"-c", 0, 0, 0, "class column (integer)"},
 	{"-err", 0, 0, 1, "error column (float)" },
-	{"-t", 0, 0, 1, "folder for temporary files"}
+	{"-t", 0, 0, 1, "folder for temporary files"},
+	{"-mono", 0, 0, 0, "mono class value"}
 };
 
 
@@ -106,6 +107,8 @@ int main(int nArgs, char* argv[])
 	string strWorkFolder = oOptionParser.GetOptionValue("-t");
 	string strErrorColName = oOptionParser.GetOptionValue("-err");
 	string strClassColName = oOptionParser.GetOptionValue("-c");
+	unsigned int nMonoVal = oOptionParser.GetOptionValue("-mono") != "" ?
+							std::stoi(oOptionParser.GetOptionValue("-mono")) :-1;
 
 	TaskOperator oTOP;
 	
@@ -114,8 +117,9 @@ int main(int nArgs, char* argv[])
 		strVectorFile,
 		strMask,
 		strWorkFolder,
+		strErrorColName,
 		strClassColName,
-		strErrorColName))
+		nMonoVal ))
 	{
 		return 0;
 	}

@@ -32,8 +32,9 @@ public:
 			string strVectorFile,
 			string strMaskFile,
 			string strWorkFolder,
+			string strErrorColName,
 			string strClassColName,
-			string strErrorColName)
+			unsigned int nMonoVal = -1)
 	{
 		if (!(m_poMaskDS = (GDALDataset*)GDALOpen(strMaskFile.c_str(), GA_ReadOnly)))
 		{
@@ -47,7 +48,16 @@ public:
 		m_strGDALRasterize = strGDALRasterize;
 		m_strVectorFile = strVectorFile;
 		m_strMaskFile = strMaskFile;
-		m_strClassColName = strClassColName;
+		if (nMonoVal == -1)
+		{
+			m_strClassColName = strClassColName;
+			m_nMonoVal = -1;
+		}
+		else
+		{
+			m_strClassColName = "";
+			m_nMonoVal = nMonoVal;
+		}
 
 		m_strTempCopyOfVectorFile = MPLFileSys::GetAbsolutePath(strWorkFolder,
 			MPLFileSys::RemoveExtension(MPLFileSys::RemovePath(strVectorFile)) + "_" + to_string(rand()) + ".shp");
@@ -59,7 +69,7 @@ public:
 		m_strErrorColName = strErrorColName;
 
 		if (CreateTempVectorCopy())
-			if (AddFIDcolumn())
+			if (AddFIDcolumnAndParseClasses())
 				if (RunRasterize())
 					if (CalcStatByMatchingRasters())
 						if (WriteErrorColumn())
@@ -180,7 +190,7 @@ public:
 		return (0==std::system(strCommand.c_str()));
 	}
 
-	bool AddFIDcolumn()
+	bool AddFIDcolumnAndParseClasses()
 	{
 		GDALDataset* poVecDS = (GDALDataset*)GDALOpenEx(m_strTempCopyOfVectorFile.c_str(), 
 														GDAL_OF_VECTOR | GDAL_OF_UPDATE, 
@@ -198,7 +208,8 @@ public:
 			poFeature->SetField(m_strFIDColName.c_str(), poFeature->GetFID());
 			poLayer->SetFeature(poFeature);
 			//std::cout << poFeature->GetFieldAsInteger(strFIDName.c_str()) << endl;
-			m_mapClasses[poFeature->GetFID()] = poFeature->GetFieldAsInteger(m_strClassColName.c_str());
+			m_mapClasses[poFeature->GetFID()] = (m_nMonoVal == -1) ? 
+				poFeature->GetFieldAsInteger(m_strClassColName.c_str()) : m_nMonoVal;
 			OGRFeature::DestroyFeature(poFeature);
 			//poLayer->
 			//poLayer->
@@ -247,4 +258,5 @@ private:
 	string m_strGDALRasterize;
 	string m_strErrorColName;
 	static const unsigned int m_nNDV = UINT_MAX;
+	unsigned int m_nMonoVal;
 };
