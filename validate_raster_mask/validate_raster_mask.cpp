@@ -38,6 +38,7 @@ const list<MPLOptionDescriptor> listDescriptors = {
 
 const list<string> listUsageExamples = {
   "validate_raster_mask -m crop_mask_map_39UVB.tif -v fields.shp -c CROP -err error -t /home/workfolder",
+  "validate_raster_mask -m crop_mask_map_39UVB.tif -v fields.shp -mono 1 -err error -t /home/workfolder",
 };
 
 //run gdalwarp
