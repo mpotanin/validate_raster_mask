@@ -27,21 +27,28 @@ Objects
 
 
 const list<MPLOptionDescriptor> listDescriptors = {
-	{ "-m", 0, 0, 1, "raster mask (uint8/16/32)" },
+	{ "-m", 0, 0, 1, "input mask, file path or search pattern (raster: uint8/16/32)" },
+	{"-clip", 0, 0, 0, "clip border for input mask"},
 	{ "-v", 0, 0, 1, "validation vector" },
 	{"-c", 0, 0, 0, "class column (integer)"},
 	{"-err", 0, 0, 1, "error column (float)" },
-	{"-t", 0, 0, 1, "folder for temporary files"},
 	{"-mono", 0, 0, 0, "mono class value"}
 };
 
 
 const list<string> listUsageExamples = {
   "validate_raster_mask -m crop_mask_map_39UVB.tif -v fields.shp -c CROP -err error -t /home/workfolder",
-  "validate_raster_mask -m crop_mask_map_39UVB.tif -v fields.shp -mono 1 -err error -t /home/workfolder",
+  "validate_raster_mask -m /data/*.tif -v fields.shp -clip /data/clip.shp -mono 1 -err error -t /home/workfolder",
 };
 
 //run gdalwarp
+//search input, create file list
+//iterate input files
+//   select features
+//   rasterize features
+//   calculate error
+//   update validation vector
+
 
 #ifdef WIN32
 int main(const int nArgs, const char* argv[])
@@ -108,10 +115,37 @@ int main(int nArgs, char* argv[])
 	string strWorkFolder = oOptionParser.GetOptionValue("-t");
 	string strErrorColName = oOptionParser.GetOptionValue("-err");
 	string strClassColName = oOptionParser.GetOptionValue("-c");
+	string strClipBorder = oOptionParser.GetOptionValue("-clip");
 	unsigned int nMonoVal = oOptionParser.GetOptionValue("-mono") != "" ?
 							std::stoi(oOptionParser.GetOptionValue("-mono")) :-1;
 
-	TaskOperator oTOP;
+	list<string> listInputRasters;
+	MPLFileSys::FindFilesByPattern(listInputRasters, strMask);
+	if (listInputRasters.size() == 0)
+	{
+		std::cout << "ERROR: can't find raster file by pattern: " << strMask << endl;
+		return 2;
+	}
+
+
+
+	for (auto inputRaster : listInputRasters)
+	{
+	std:cout << "Processing " << inputRaster << endl;
+		TaskOperator oTOP;
+		if (!
+			oTOP.InitAndRun(strVectorFile,
+				inputRaster,
+				strErrorColName,
+				strClassColName,
+				nMonoVal))
+		{
+			std::cout << "ERROR: while processing raster: " << inputRaster << endl;
+			return 3;
+		}
+	
+	}
+	/*
 	
 	if (oTOP.InitAndRun(strOGR2OGR,
 		strGDALRasterize,
@@ -128,6 +162,7 @@ int main(int nArgs, char* argv[])
 	{
 		return 1;
 	}
+	*/
 	return 0;
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
