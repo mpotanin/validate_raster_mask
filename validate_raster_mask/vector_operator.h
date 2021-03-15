@@ -146,7 +146,12 @@ protected:
 		double dblGeotransform[6];
 		m_poMaskDS->GetGeoTransform(dblGeotransform);
 		poOutputDS->SetGeoTransform(dblGeotransform);
-		poOutputDS->SetSpatialRef(m_poMaskDS->GetSpatialRef());
+		const char* strProjRef = m_poMaskDS->GetProjectionRef();
+		//OGRSpatialReference oSRS;
+		//oSRS.SetFromUserInput(strProjRef);
+		poOutputDS->SetProjection(strProjRef);
+
+		//poOutputDS->SetSpatialRef(m_poMaskDS->GetSpatialRef());
 
 		unsigned long int nPixelsCount = nWidth * nHeight;
 		unsigned int* panNDV = new unsigned int[nPixelsCount];
@@ -172,19 +177,23 @@ protected:
 
 	
 		int nCount = 0;
-		OGRSpatialReference *poSRS= m_poMaskDS->GetSpatialRef()->Clone();
+		//OGRSpatialReference *poSRS= m_poMaskDS->GetSpatialRef()->Clone();
+		const char* strProjRef = m_poMaskDS->GetProjectionRef();
+		OGRSpatialReference oSRS;
+		oSRS.SetFromUserInput(strProjRef);
+
 		OGRFeature* poFeature = 0;
 		while (poFeature = poLayer->GetNextFeature())
 		{
 			padfFID[nCount] = poFeature->GetFID();
 			m_mapClasses[padfFID[nCount]] = poFeature->GetFieldAsInteger(m_strClassColName.c_str());
 			papoGeometries[nCount] = poFeature->GetGeometryRef()->clone();
-			((OGRGeometry*)papoGeometries[nCount])->transformTo(poSRS);
+			((OGRGeometry*)papoGeometries[nCount])->transformTo(&oSRS);
 			nCount++;
 			OGRFeature::DestroyFeature(poFeature);
 		}
 		
-		OGRSpatialReference::DestroySpatialReference(poSRS);
+		//OGRSpatialReference::DestroySpatialReference(poSRS);
 		GDALClose(poVecDS);
 		return nCount;
 	}
